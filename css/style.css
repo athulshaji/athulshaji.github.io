@@ -69,3 +69,26 @@
 .center {
     text-align: center;
 }
+
+
+.timeline-item h4{
+
+    color:var(--accent);
+    margin:8px 0 15px;
+
+}
+
+.timeline-item ul{
+
+    margin-top:15px;
+    padding-left:20px;
+
+}
+
+.timeline-item li{
+
+    margin-bottom:10px;
+
+}
+
+
