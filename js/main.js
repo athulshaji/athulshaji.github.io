@@ -1,13 +1,32 @@
-/*
-===========================================================
-Athul Shaji Academic Website
-Main JavaScript
-Version 1.0
-===========================================================
-*/
+async function loadComponent(elementId, filePath) {
+    const response = await fetch(filePath);
 
-document.addEventListener("DOMContentLoaded", () => {
+    if (!response.ok) {
+        throw new Error(`Unable to load ${filePath}`);
+    }
 
-    console.log("Athul Shaji Academic Website Loaded");
+    const html = await response.text();
+    document.getElementById(elementId).innerHTML = html;
+}
+
+function highlightCurrentPage() {
+    const currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
+
+    document.querySelectorAll("nav a").forEach(link => {
+
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+
+    });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    await loadComponent("navbar", "components/navbar.html");
+    await loadComponent("footer", "components/footer.html");
+
+    highlightCurrentPage();
 
 });
